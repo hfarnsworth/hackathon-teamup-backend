@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -22,3 +23,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+=======
+# hackathon-teamup-backend
+Rails backend for my Hackathon Teamup app
+>>>>>>> d0bb057f0d7a763d047fbe9085f407bab85ff2e7
