@@ -16220,3 +16220,85 @@ Completed 200 OK in 119ms (Views: 92.0ms | ActiveRecord: 2.1ms | Allocations: 38
 Completed 200 OK in 167ms (Views: 140.2ms | ActiveRecord: 3.2ms | Allocations: 56699)
 
 
+  [1m[35m (275.3ms)[0m  [1m[35mCREATE DATABASE "hackathon_teamup_development" ENCODING = 'unicode'[0m
+  [1m[35m (85.0ms)[0m  [1m[35mCREATE DATABASE "hackathon_teamup_test" ENCODING = 'unicode'[0m
+  [1m[35m (17.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (21.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8297625624805367340)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTeams (20200513091711)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (28.0ms)[0m  [1m[35mCREATE TABLE "teams" ("id" bigserial primary key, "name" character varying, "description" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200513091711"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCollaborators (20200513092050)
+  [1m[35m (5.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (21.2ms)[0m  [1m[35mCREATE TABLE "collaborators" ("id" bigserial primary key, "name" character varying, "role" character varying, "skills" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200513092050"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTeamMembers (20200513092101)
+  [1m[35m (5.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "team_members" ("id" bigserial primary key, "team_id" integer, "collaborator_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200513092101"]]
+  [1m[35m (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (7.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-08-12 21:43:21.930050"], ["updated_at", "2020-08-12 21:43:21.930050"]]
+  [1m[35m (6.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(8297625624805367340)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCollaborator Create (1.0ms)[0m  [1m[32mINSERT INTO "collaborators" ("name", "role", "skills", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Bob"], ["role", "programmer"], ["skills", "Unity, JavaScript, C++"], ["created_at", "2020-08-12 21:43:25.678613"], ["updated_at", "2020-08-12 21:43:25.678613"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCollaborator Create (0.4ms)[0m  [1m[32mINSERT INTO "collaborators" ("name", "role", "skills", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Joe"], ["role", "animator"], ["skills", "Unity, Maya, pixel-art"], ["created_at", "2020-08-12 21:43:25.683007"], ["updated_at", "2020-08-12 21:43:25.683007"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCollaborator Create (0.5ms)[0m  [1m[32mINSERT INTO "collaborators" ("name", "role", "skills", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Danesh"], ["role", "programmer"], ["skills", "sloppy code"], ["created_at", "2020-08-12 21:43:25.686181"], ["updated_at", "2020-08-12 21:43:25.686181"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCollaborator Create (0.3ms)[0m  [1m[32mINSERT INTO "collaborators" ("name", "role", "skills", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Gilfoyle"], ["role", "programmer"], ["skills", "clean scalable code, dry sarcastic zings"], ["created_at", "2020-08-12 21:43:25.690186"], ["updated_at", "2020-08-12 21:43:25.690186"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCollaborator Create (0.2ms)[0m  [1m[32mINSERT INTO "collaborators" ("name", "role", "skills", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Nobuo Uematsu"], ["role", "composer"], ["skills", "midi god, epic battle music"], ["created_at", "2020-08-12 21:43:25.693284"], ["updated_at", "2020-08-12 21:43:25.693284"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCollaborator Create (0.3ms)[0m  [1m[32mINSERT INTO "collaborators" ("name", "role", "skills", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Foley"], ["role", "sound effects"], ["skills", "pots and pans, those cool star wars laser sounds"], ["created_at", "2020-08-12 21:43:25.696093"], ["updated_at", "2020-08-12 21:43:25.696093"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCollaborator Create (0.3ms)[0m  [1m[32mINSERT INTO "collaborators" ("name", "role", "skills", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Mark Ryden"], ["role", "2D artist"], ["skills", "paint, creepy girls, the great emancipator, meat"], ["created_at", "2020-08-12 21:43:25.698966"], ["updated_at", "2020-08-12 21:43:25.698966"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCollaborator Create (0.3ms)[0m  [1m[32mINSERT INTO "collaborators" ("name", "role", "skills", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Havi"], ["role", "game design"], ["skills", "JavaScript, character design/animation"], ["created_at", "2020-08-12 21:43:25.701784"], ["updated_at", "2020-08-12 21:43:25.701784"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTeam Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "teams" WHERE "teams"."name" = $1 LIMIT $2[0m  [["name", "PiperChat"], ["LIMIT", 1]]
+  [1m[36mTeam Create (0.5ms)[0m  [1m[32mINSERT INTO "teams" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "PiperChat"], ["description", "new video-chat app using state-of-the-art compression"], ["created_at", "2020-08-12 21:43:25.721137"], ["updated_at", "2020-08-12 21:43:25.721137"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTeam Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "teams" WHERE "teams"."name" = $1 LIMIT $2[0m  [["name", "Choose-Your-Own Sadventure"], ["LIMIT", 1]]
+  [1m[36mTeam Create (0.3ms)[0m  [1m[32mINSERT INTO "teams" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Choose-Your-Own Sadventure"], ["description", "a Psychological Thriller Point-and-Click about a ghost-girl trying to learn about her past"], ["created_at", "2020-08-12 21:43:25.741179"], ["updated_at", "2020-08-12 21:43:25.741179"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTeamMember Create (0.7ms)[0m  [1m[32mINSERT INTO "team_members" ("team_id", "collaborator_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["team_id", 1], ["collaborator_id", 3], ["created_at", "2020-08-12 21:43:25.765566"], ["updated_at", "2020-08-12 21:43:25.765566"]]
+  [1m[35m (5.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTeamMember Create (0.4ms)[0m  [1m[32mINSERT INTO "team_members" ("team_id", "collaborator_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["team_id", 1], ["collaborator_id", 4], ["created_at", "2020-08-12 21:43:25.774901"], ["updated_at", "2020-08-12 21:43:25.774901"]]
+  [1m[35m (6.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTeamMember Create (0.4ms)[0m  [1m[32mINSERT INTO "team_members" ("team_id", "collaborator_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["team_id", 2], ["collaborator_id", 8], ["created_at", "2020-08-12 21:43:25.784592"], ["updated_at", "2020-08-12 21:43:25.784592"]]
+  [1m[35m (5.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTeamMember Create (0.4ms)[0m  [1m[32mINSERT INTO "team_members" ("team_id", "collaborator_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["team_id", 2], ["collaborator_id", 5], ["created_at", "2020-08-12 21:43:25.793604"], ["updated_at", "2020-08-12 21:43:25.793604"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTeamMember Create (0.3ms)[0m  [1m[32mINSERT INTO "team_members" ("team_id", "collaborator_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["team_id", 2], ["collaborator_id", 6], ["created_at", "2020-08-12 21:43:25.797343"], ["updated_at", "2020-08-12 21:43:25.797343"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTeamMember Create (0.3ms)[0m  [1m[32mINSERT INTO "team_members" ("team_id", "collaborator_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["team_id", 1], ["collaborator_id", 6], ["created_at", "2020-08-12 21:43:25.800567"], ["updated_at", "2020-08-12 21:43:25.800567"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTeamMember Create (0.3ms)[0m  [1m[32mINSERT INTO "team_members" ("team_id", "collaborator_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["team_id", 2], ["collaborator_id", 1], ["created_at", "2020-08-12 21:43:25.803686"], ["updated_at", "2020-08-12 21:43:25.803686"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
